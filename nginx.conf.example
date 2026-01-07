@@ -1,0 +1,42 @@
+# Nginx 配置示例 - Docsify 部署
+
+# 全局配置
+worker_processes auto;
+events {
+    worker_connections 1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+
+    # Docsify 网站配置
+    server {
+        listen       80;
+        server_name  your-domain.com;  # 替换为你的域名
+
+        # 设置网站根目录（指向docs目录的内容）
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+
+        # 处理单页应用路由（重要！）
+        location / {
+            try_files $uri $uri/ /index.html;
+        }
+
+        # 静态文件缓存设置
+        location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
+            expires 1y;
+            add_header Cache-Control "public, max-age=31536000";
+        }
+
+        # 日志配置
+        access_log  /var/log/nginx/docsify.access.log;
+        error_log   /var/log/nginx/docsify.error.log;
+
+        # 404页面配置（可选，使用Docsify的404页面）
+        error_page  404  /_404.md;
+    }
+}
