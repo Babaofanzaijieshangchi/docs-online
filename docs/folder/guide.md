@@ -1,12 +1,13 @@
 # 指南页面
- <!--最后更新时间：{docsify-updated}-->
+最后更新时间：{docsify-updated}
 
 # tab标签
  <!-- tabs:start -->
 #### **English**
+hello! 
+<!-- 文件内嵌插件被移除了，所以现在用不了 
 
-<!-- 文件内嵌插件被移除了，所以现在用不了 -->
-[filename](/folder/other.md ':include')
+[filename](./other.md ':include')-->
 
 #### **French**
 
