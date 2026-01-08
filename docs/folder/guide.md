@@ -1,5 +1,5 @@
 # 指南页面
- 最后更新时间：{docsify-updated} 
+ <!--最后更新时间：{docsify-updated}-->
 
 # tab标签
  <!-- tabs:start -->
