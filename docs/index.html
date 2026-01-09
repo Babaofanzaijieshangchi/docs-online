@@ -6,7 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="description" content="Description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+    <style>
+
+        /*设置一级目录样式*/
+        .sidebar-nav .level-1{
+            font-weight: bold !important;
+            cursor: default;
+        }
+        /*强制一级目录显示*/
+        .sidebar-nav .level-1 > ul {
+            display: block !important; /* 强制显示一级目录下的所有子项 */
+        }
+    </style>
 </head>
 <body>
 <div id="app"></div>
@@ -17,14 +30,17 @@
         repo: '',//点击name跳转的网址
         loadSidebar: true,
         autoHeader: true,//自动生成目录
+        sidebarDisplayLevel: 2,//默认折叠展示几级目录
+        subMaxLevel: 2,//设置侧边栏目录最多展示到第几层级
+        executeScript: true,
+        auto2top: true,//加载新一页自动回滚到最顶部
         alias: {
-            '/.*/_sidebar.md': '/_sidebar.md'
+            '/(.*?)_sidebar.md': '/_sidebar.md',
         },//所有目录都在docs文件夹下的_sidebar.md中配置，实现折叠菜单的功能
         collapseSidebar: true,
-        subMaxLevel: 3,
         // coverpage: true,//封面  在_coverpage.md中配置
-        loadNavbar: true,//加载导航栏
-        homePage: 'home.md',//自定义首页
+        // loadNavbar: true,//加载定义导航栏，在_navbar.md中配置导航栏
+        // homePage: 'home.md',//自定义首页
         themeColor: '#1BB2E9',//主题颜色
         formatUpdated: '{MM}/{DD} {HH}:{mm}',
         //或者设置自定义时间格式
@@ -56,7 +72,8 @@
             tabComments: true, // default
             tabHeadings: true // default
         },//tab标签  在guide.md中有例子
-        plugins: []
+        plugins: [],
+        mode:'hash',
     }
 
     // 没有网络的情况下可以离线访问
